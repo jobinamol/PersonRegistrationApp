@@ -1,0 +1,104 @@
+<div class="container mt-5">
+
+  <h2>Person Registration</h2>
+
+  <!-- Success / Error Message -->
+  <div
+    *ngIf="message"
+    class="alert mt-3"
+    [ngClass]="{
+      'alert-success': messageType === 'success',
+      'alert-danger': messageType === 'danger',
+      'alert-warning': messageType === 'warning'
+    }">
+
+    {{ message }}
+
+  </div>
+
+  <form #personForm="ngForm" (ngSubmit)="submitForm()">
+
+    <!-- Full Name -->
+    <div class="mb-3">
+      <label class="form-label">Full Name</label>
+
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="name"
+        name="name"
+        required
+        autocomplete="off">
+    </div>
+
+    <!-- Email -->
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+
+      <input
+        type="email"
+        class="form-control"
+        [(ngModel)]="email"
+        name="email"
+        required
+        autocomplete="off">
+    </div>
+
+    <!-- Phone Number -->
+    <div class="mb-3">
+      <label class="form-label">Phone Number</label>
+
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="phoneNumber"
+        name="phoneNumber"
+        required
+        autocomplete="off">
+    </div>
+
+    <hr>
+
+    <!-- Map -->
+    <h3>Map Drawing Area</h3>
+
+    <div
+      id="map"
+      style="
+        height: 500px;
+        width: 100%;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+      ">
+    </div>
+
+    <!-- Submit Button -->
+    <button
+      type="submit"
+      class="btn btn-primary">
+      Submit
+    </button>
+
+    <h3>Registered Persons</h3>
+
+<table class="table table-bordered mt-3">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone Number</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let person of persons">
+      <td>{{ person.name }}</td>
+      <td>{{ person.email }}</td>
+      <td>{{ person.phoneNumber }}</td>
+    </tr>
+  </tbody>
+</table>
+
+  </form>
+
+</div>
